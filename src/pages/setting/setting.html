@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-navbar hideBackButton  color="primary1">
+      <ion-title class="logo">
+      </ion-title>
+      <button ion-button menuToggle color="secondary">
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-buttons end (click)="PageSearch()">
+        <button ion-button icon-only color="secondary">
+          <ion-icon name="search"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  <ion-content>
+  
+    <ion-list *ngFor="let setting of setting ; let ii = index  ; let ll = count">
+      <ion-item>
+          <a href="{{setting.instgram}}" style="text-align: center" secondary clear item-right>
+              <ion-label color="dark" text-center> 
+                  <ion-icon item-left name="logo-instagram" color="secondary"></ion-icon>
+                  Instgram
+                </ion-label>
+          </a>
+      </ion-item>
+
+      <ion-item>
+          <a href="{{setting.twitter}}" style="text-align: center" secondary clear item-right>
+              <ion-label color="dark" text-center> 
+                  <ion-icon item-left name="logo-twitter" color="secondary"></ion-icon>
+                  Twitter
+                </ion-label>
+          </a>
+          
+            
+      </ion-item>
+
+      <ion-item>
+          <ion-label color="dark" text-center> 
+            <ion-icon item-left name="logo-whatsapp" color="secondary"></ion-icon>
+            WhatsApp : <span>{{setting.whats_app}}</span> 
+          </ion-label>
+      </ion-item>
+    
+    </ion-list>
+  
+  </ion-content>
+  

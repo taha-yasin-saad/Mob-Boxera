@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar color="primary1">
+    <ion-title>{{ 'setting' | translate }}</ion-title>
+    <button ion-button menuToggle color="secondary">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list>
+    <button ion-item *ngIf="isLogin">
+      <ion-icon name="logo-usd" item-start color="primary"></ion-icon>
+      <ion-label>{{ 'Choose_Currency' | translate }}</ion-label>
+      <ion-select [(ngModel)]="currency" (ngModelChange)="change_Currency()">
+        <ion-option *ngFor="let currenc of currencies" value="{{currenc.iso}}">{{currenc.name}}</ion-option>
+      </ion-select>
+    </button>
+    <button ion-item>
+      <ion-icon name="globe" item-start color="primary"></ion-icon>
+      <ion-label>{{ 'choose_language' | translate }}</ion-label>
+      <ion-select [(ngModel)]="language" (ngModelChange)="change_language()">
+        <ion-option value="ar" >عربى</ion-option>
+        <ion-option value="en">English</ion-option>
+      </ion-select>
+    </button>
+  </ion-list>
+</ion-content>

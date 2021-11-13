@@ -1,0 +1,74 @@
+<ion-menu [content]="nav" persistent="true">
+  <ion-content>
+    <ion-card padding color="secondary" class="infoP" *ngIf="isLogin">
+        <ion-card-header text-capitalize>
+            {{UserName}}  <ion-icon name="md-create" (click)="onLoad(ProfilePage)"></ion-icon>
+        </ion-card-header>
+        <ion-card-content>
+            {{UserEmail}}
+        </ion-card-content>
+    </ion-card>
+    <ion-list class="IconMenu">
+      <button menuClose ion-item (click)="onLoad(mainRoot)">
+        {{ 'main' | translate }}
+        <ion-icon name="home" item-left color="secondary"></ion-icon>
+      </button>
+      <button menuClose ion-item (click)="onLoad(myBookRoot)" *ngIf="isLogin">
+        {{ 'my_book' | translate }}
+        <ion-icon name="book" item-left color="secondary"></ion-icon>
+      </button>
+      <button menuClose ion-item (click)="onLoad(categoriesRoot)">
+        {{ 'categories' | translate }}
+        <ion-icon name="apps" item-left color="secondary"></ion-icon>
+      </button>
+      <button menuClose ion-item (click)="onLoad(myCartRoot)" *ngIf="isLogin">
+        {{ 'my_cart' | translate }}
+        <ion-icon name="cart" item-left color="secondary"></ion-icon>
+      </button>
+      <button menuClose ion-item (click)="Fav_page()" *ngIf="isLogin">
+        {{ 'favorites' | translate }}
+        <ion-icon name="heart" item-left color="secondary"></ion-icon>
+      </button>
+      <button menuClose ion-item (click)="onLoad(MyProfilePage)">
+        {{ 'Profile' | translate }}
+        <ion-icon ios="ios-person" md="md-person" item-left color="secondary"></ion-icon>
+      </button>
+      <button menuClose ion-item (click)="onLoad(loginPage)" *ngIf="!isLogin">
+        {{ 'login' | translate }}
+        <ion-icon name="log-in" item-left color="secondary"></ion-icon>
+      </button>
+      <button menuClose ion-item (click)="share()">
+        {{ 'share' | translate }}
+        <ion-icon name="md-share" item-left color="secondary"></ion-icon>
+      </button>
+      <div *ngFor="let setting of setting_data ; let ii = index  ; let ll = count">
+        <button menuClose ion-item (click)="open_link(setting.instgram)">
+          {{ 'instagram' | translate }}
+          <ion-icon name="logo-instagram" item-left color="secondary"></ion-icon>
+        </button>
+
+        <button menuClose ion-item (click)="open_link(setting.twitter)">
+            {{ 'twitter' | translate }}
+            <ion-icon name="logo-twitter" item-left color="secondary"></ion-icon>
+        </button> 
+
+        <button  ion-item>
+            {{ 'whatsapp' | translate }} : {{setting.whats_app}}
+            <ion-icon name="logo-whatsapp" item-left color="secondary"></ion-icon>
+        </button> 
+      </div>
+
+      <button menuClose ion-item (click)="onLogout()" *ngIf="isLogin">
+        {{ 'logout' | translate }}
+        <ion-icon name="log-out" item-left color="secondary"></ion-icon>
+      </button>
+
+      
+    
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="mainRoot" #nav swipeBackEnabled="false"></ion-nav>

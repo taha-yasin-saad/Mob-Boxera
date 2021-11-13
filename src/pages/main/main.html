@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-navbar hideBackButton color="primary1">
+    <ion-title class="logo">
+    </ion-title>
+    <button ion-button menuToggle color="secondary">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <!-- <ion-buttons end (click)="PageSearch()">
+      <button ion-button icon-only color="secondary">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons> -->
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="content-container">
+    <div>
+      <ion-searchbar 
+        placeholder="{{'search' | translate}}"
+        (ionInput)="getItems($event)">
+      </ion-searchbar>
+    </div>
+    <swiper class="swiper-container slide-container" fxFlex="auto" [config]="config" slidesPerView="2">
+      <div *ngFor="let slide of slides">
+        <a href="{{slide.url}}">
+          <img class="headSlider" src="{{image_url}}{{ slide.image_name }}">
+        </a>
+      </div>
+    </swiper>
+  </div>
+
+  <section *ngIf="!isSearch">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-list>
+      <ion-item-group *ngFor="let category of categories ; let ii = index  ; let ll = count">
+        <div class="ad" *ngIf="category.is_adv == true" margin-bottom>
+          <a href="{{category.url}}">
+            <img src="{{image_url}}{{category.adv_image}}" alt="">
+          </a>
+        </div>
+        <div *ngIf="category.is_adv == false">
+          <ion-item-divider color="secondary">
+              <span text-capitalize>{{ category.category_name | translate }}</span>
+              <ion-buttons end>
+                <button ion-button text-uppercase clear color="primary1" (click)="Go_Category(category.class_id, category.category_name)">
+                  {{ 'more' | translate }}
+                </button>
+              </ion-buttons>
+          </ion-item-divider>
+          <ion-item>
+            <ks-swiper-container [options]="options" >
+              <ks-swiper-slide *ngFor="let product of category.product ; let i = index ; let l = count">
+                <div class="cardInnerWrap">
+                    <img src="{{image_url}}{{ product.image_name }}" (click)="PageBookInfo(category?.product[i])">
+                    <div class="details">
+                      <del *ngIf="product.has_offer == 1">{{product.price}} {{product.currency}}<br></del>
+                      <span *ngIf="product.has_offer == 1">{{product.offer_price}} {{product.currency}}</span>
+                      <span *ngIf="product.has_offer == 0">{{product.price}} {{product.currency}}</span>
+                      <!-- <br>
+                      <ion-icon name="ios-star" *ngFor="let star of map.get(product.p_id)" color="primary"></ion-icon> -->
+                    </div>
+                </div>
+                
+              </ks-swiper-slide>
+            </ks-swiper-container>
+          </ion-item>
+        </div>
+      </ion-item-group>
+    </ion-list>
+  </section>
+
+  <section *ngIf="isSearch" dir="{{'dir_lang' | translate}}">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 *ngFor="let book of books">
+            <ion-card text-center>
+              <img src="{{image_url}}{{ book.image_name }}" alt="" (click)="PageBookInfo(book)">
+              <ion-grid>
+                <ion-row>
+                    <ion-col col-12>
+                      <h3>{{book.product_name}}</h3>
+                    </ion-col>
+                  </ion-row>
+              </ion-grid>
+            </ion-card>
+        </ion-col>
+        <h2 text-center *ngIf="books?.length < 1">
+          {{ 'not_available' | translate }}
+        </h2>
+      </ion-row>
+    </ion-grid>
+    <!-- <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="HideLoadIcon">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll> -->
+  </section>
+  
+
+</ion-content>

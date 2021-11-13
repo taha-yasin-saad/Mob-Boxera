@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-navbar color="primary1">
+    <ion-title>{{ 'my_profile' | translate }}</ion-title>
+    <button ion-button menuToggle color="secondary">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list *ngIf="cardBooks?.length != 0">
+      <ion-item>
+        <ion-label floating>{{ 'full_name' | translate }}</ion-label>
+        <ion-input 
+        type="text"
+        [(ngModel)]="user_name" 
+        name="user_name"
+        value="{{user_name}}"
+        required></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label floating>{{ 'insert_whatsapp' | translate }}</ion-label>
+        <ion-input 
+        type="number"
+        [(ngModel)]="whatsapp" 
+        name="whatsapp"
+        value="{{whatsapp}}"
+        required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>{{ 'choose_country' | translate }}</ion-label>
+        <ion-select class="country" [(ngModel)]="country">
+            <ion-option *ngFor="let country of countries" value="{{country.id}}" [selected]="country.country_name == CountyName" >{{country.country_name}}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>{{ 'city' | translate }}</ion-label>
+        <ion-input 
+        type="text"
+        [(ngModel)]="city" 
+        name="city"
+        value="{{city}}"
+        required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>{{ 'state' | translate }}</ion-label>
+        <ion-input 
+        type="text"
+        [(ngModel)]="state" 
+        name="state"
+        value="{{state}}"
+        required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>{{ 'street' | translate }}</ion-label>
+        <ion-input 
+        type="text"
+        [(ngModel)]="street" 
+        name="street"
+        value="{{street}}"
+        required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>{{ 'home_number' | translate }}</ion-label>
+        <ion-input 
+        type="number"
+        [(ngModel)]="home_number" 
+        name="home_number"
+        value="{{home_number}}"
+        required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>{{ 'address' | translate }}</ion-label>
+        <ion-input 
+        type="text"
+        [(ngModel)]="address" 
+        name="address"
+        value="{{address}}"
+        required></ion-input>
+      </ion-item>
+    </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <button class="remove" ion-button full (click)="savedata()">{{ 'save' | translate }}</button>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,138 @@
+<ion-header>
+    <ion-navbar color="primary1">
+        <ion-title color="primary1">{{ Book_Info.product_name }}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ion-card>
+
+        <ion-card-content>
+            <ion-grid>
+                <ion-row align-center>
+                    <ion-col col-2>
+                        <!-- <div *ngIf="Book_Info.quantity > 0">
+                            <button ion-button icon-start clear (click)="Add_Card()">
+                                {{ 'put_in_basket' | translate }}
+                                <ion-icon name="ios-basket-outline" [class.fav]="card"></ion-icon>
+                            </button>
+                        </div>
+                        <div *ngIf="Book_Info.quantity < 1">
+                            {{ 'not_found' | translate }}
+                        </div> -->
+                    </ion-col>
+                    <ion-col col-8>
+                        <img class="img-book" padding-horizontal src="{{image_url}}{{ Book_Info.image_name }}">
+                    </ion-col>
+                    <!-- <ion-col col-2>
+                        <button ion-button clear (click)="Add_favourite()">
+              <ion-icon name="heart" [class.fav]="fav"></ion-icon>
+            </button>
+                    </ion-col> -->
+                </ion-row>
+                <div id="row-ar" class="{{right_class == 'en' ? 'dir-left' : 'dir-right'}}">
+
+                    <ion-row>
+                        <ion-col col-6>{{ 'book_name' | translate }} : </ion-col>
+                        <ion-col col-6>{{ Book_Info.product_name }}</ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-6>{{ 'book_category' | translate }} : </ion-col>
+                        <ion-col col-6>{{ Book_Info.category_name }}</ion-col>
+                    </ion-row>
+                    <!-- <ion-row>
+              <ion-col col-6>{{ 'book_rated' | translate }} : </ion-col>
+              <ion-col col-6>
+                <ion-icon name="ios-star" *ngFor="let star of stars" color="primary"></ion-icon>
+              </ion-col>
+          </ion-row> -->
+                    <ion-row>
+                        <ion-col col-6>{{ 'book_price' | translate }}: </ion-col>
+                        <ion-col col-6>
+                            <del *ngIf="Book_Info.has_offer == 1">{{ Book_Info.price }} {{Book_Info.currency}}<br></del>
+                            <span *ngIf="Book_Info.has_offer == 1">{{Book_Info.offer_price}} {{Book_Info.currency}}</span>
+                            <span *ngIf="Book_Info.has_offer == 0">{{Book_Info.price}} {{Book_Info.currency}}</span>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col col-6>{{ 'share_book' | translate }}: </ion-col>
+                        <ion-col col-6 text-center class="ion-share">
+                            <button ion-button icon-only (click)="regularShare()" color="primary" clear>
+                                <ion-icon class="share-icon" name="md-share"></ion-icon>
+                            </button>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col col-6>{{ 'add_to_fev' | translate }}: </ion-col>
+                        <ion-col col-6 text-center class="ion-share">
+                            <button ion-button clear (click)="Add_favourite()">
+                                <ion-icon name="heart" [class.fav]="fav"></ion-icon>
+                                </button>
+                        </ion-col>
+                    </ion-row>
+
+
+                    <ion-row>
+                        <ion-col col-6>{{ 'put_in_basket' | translate }}: </ion-col>
+                        <ion-col col-6 text-center class="ion-share">
+                            <div *ngIf="Book_Info.quantity > 0">
+                                <button ion-button clear (click)="Add_Card()">
+                                    <ion-icon name="ios-basket-outline" [class.fav]="card"></ion-icon>
+                                </button>
+                            </div>
+                            <div *ngIf="Book_Info.quantity < 1">
+                                {{ 'not_found' | translate }}
+                            </div>
+                        </ion-col>
+                    </ion-row>
+                </div>
+
+
+            </ion-grid>
+        </ion-card-content>
+
+    </ion-card>
+
+    <ion-card *ngIf="Book_Info.description != null" style="direction: rtl">
+        <ion-card-header>
+            {{ 'about_book' | translate }}
+        </ion-card-header>
+        <ion-card-content [innerHtml]="Book_Info.description">
+            <!-- {{ Book_Info.description }} -->
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="Book_Info.other_photos?.length > 0">
+        <ion-card-header dir="{{'dir_lang' | translate}}">
+            {{ 'other_images' | translate }}
+        </ion-card-header>
+        <ion-card-content>
+            <ks-swiper-container [options]="options">
+                <ks-swiper-slide *ngFor="let op of Book_Info.other_photos">
+                    <div class="cardInnerWrap">
+                        <img padding-horizontal src="{{image_url}}{{ op.image }}">
+                    </div>
+                </ks-swiper-slide>
+            </ks-swiper-container>
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-header dir="{{'dir_lang' | translate}}">
+            {{ 'similar_book' | translate }}
+        </ion-card-header>
+        <ion-card-content>
+            <ks-swiper-container [options]="options">
+                <ks-swiper-slide *ngFor="let similar_book of similar_books">
+                    <div class="cardInnerWrap">
+                        <img padding-horizontal src="{{image_url}}{{ similar_book.image_name }}" (click)="PageBookInfo(similar_book)">
+                    </div>
+                </ks-swiper-slide>
+            </ks-swiper-container>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

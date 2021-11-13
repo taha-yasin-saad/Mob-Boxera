@@ -1,0 +1,25 @@
+page-book-info {
+    ion-col:nth-child(odd) {
+        font-weight: bold;
+    }
+    [align-center]{
+        align-items: center
+    }
+    .img-book{
+        height: 200px;
+    }
+    .fav{
+        color: red
+    }
+    #row-ar{
+    	direction: rtl;
+    }
+    .dir-left{
+    	direction: ltr !important;
+    }
+    .ion-share button {
+        display: block;
+        margin: -10px auto;
+        float: right;
+    }
+}

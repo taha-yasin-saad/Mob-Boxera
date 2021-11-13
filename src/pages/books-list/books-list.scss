@@ -1,0 +1,107 @@
+page-books-list {
+    .book-card {
+        position: relative;
+    }
+    .book-card .top{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.588235);
+        color: #fff;
+        padding: 5px 0;
+    }
+    .book-card .bottom{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.588235);
+        color: #fff;
+        padding: 5px 0;
+    }
+    ion-card img {
+        height: 260px
+    }
+    .fav{
+        color: red
+    }
+    .searchbar-clear-icon{
+        display: none !important;
+    }
+    ion-badge span {
+        display: block;
+        direction: ltr;
+    }
+
+    ion-card {
+        position: relative;
+        text-align: center;
+        height: 200px;
+        img{
+            height: 100%;
+            object-fit: cover;
+        }
+        &:after{
+            content: '';
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: rgba(7, 7, 7, 0.44);
+        }
+    }    
+    .card-title {
+        position: absolute;
+        top: 36%;
+        font-size: 2.0em;
+        width: 100%;
+        font-weight: bold;
+        color: #fff;
+        z-index: 9;
+    }
+    .card-subtitle {
+        font-size: 1.0em;
+        position: absolute;
+        top: 52%;
+        width: 100%;
+        color: #fff;
+        z-index: 9;
+    }
+    ion-grid {
+        text-align: center;
+    }
+    ion-grid ion-card {
+        height: 120px;
+        width: 100% !important;
+        display: table-cell;
+    }
+
+    :host{
+        input,.searchbar-input.sc-ion-searchbar-md{
+            border-radius: 22px !important;
+        }
+    }
+    .searchbar-input-container.sc-ion-searchbar-md{
+        border-radius: 22px !important;
+        overflow: hidden !important;
+    }
+    ion-searchbar{
+        background: none !important;
+        border-radius: 22px;
+        overflow: hidden;
+        padding: 0;
+        margin: 5px auto;
+    }
+    .searchbar-input {
+        background-color: rgb(214, 237, 235) !important;
+        height: 4rem !important;
+    }
+    .book-top ion-col {
+        padding: 0px;
+    }
+    .book-top span {
+        direction: ltr;
+    }
+}

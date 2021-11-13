@@ -1,0 +1,65 @@
+<ion-header>
+
+  <ion-navbar color="primary1">
+    <ion-title>{{ 'my_book' | translate }}</ion-title>
+    <button ion-button menuToggle color="secondary">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card *ngFor="let order of order_list">
+
+    <ion-card-content>
+      <p>
+        {{order.note}}
+      </p>
+      <ion-badge *ngIf="order.status==1" item-end style="background-color: green;color: white">{{ 'accept' | translate }}</ion-badge>
+      <ion-badge *ngIf="order.status==2" item-end style="background-color: red;color: white">{{ 'refuse' | translate }}</ion-badge>      
+      <ion-badge *ngIf="order.status==0" item-end>{{ 'wait' | translate }}</ion-badge>
+    </ion-card-content>
+
+    <ion-item>
+      <ion-icon name='time' item-start style="color: #d03e84"></ion-icon>
+      {{ 'date' | translate }}      
+      <ion-badge item-end>{{order.date}}</ion-badge>
+    </ion-item>
+
+    <ion-item *ngIf="order.dilevry_price">
+      <ion-icon name='car' item-start style="color: #55acee"></ion-icon>
+      {{ 'dilevry_price' | translate }}
+      <ion-badge item-end>{{order.dilevry_price}} {{order.currency}}</ion-badge>
+    </ion-item>
+
+    <ion-item *ngIf="order.book_price">
+      <ion-icon name='book' item-start style="color: #55acee"></ion-icon>
+      {{ 'book_price' | translate }}
+      <ion-badge item-end>{{order.book_price}} {{order.currency}}</ion-badge>
+    </ion-item>
+
+    <ion-item *ngIf="order.money_when_reception">
+      <ion-icon name='cash' item-start style="color: #55acee"></ion-icon>
+      {{ 'price_when_recepition' | translate }}
+      <ion-badge item-end>{{order.money_when_reception}} {{order.currency}}</ion-badge>
+    </ion-item>
+
+    <ion-item *ngIf="order.price">
+      <ion-icon name='cash' item-start style="color: #55acee"></ion-icon>
+      {{ 'total_cost' | translate }}
+      <ion-badge item-end>{{order.price}} {{order.currency}}</ion-badge>
+    </ion-item>
+
+    <!-- <ion-item *ngIf="order.status==1">
+      <button ion-button block (click)="presentPrompt(order.id)">{{ 'put_your_rate' | translate }} </button>
+    </ion-item> -->
+
+  </ion-card>
+  
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="HideLoadIcon">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
